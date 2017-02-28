@@ -1,0 +1,20 @@
+<!doctype html>
+<title>That Should Have A Name</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1><a href="/">That Should Have A Name</a></h1>
+  Crowdsourcing the coining of new words and terms
+  <div class=metanav>
+    <a href="/about">About</a> | 
+    <a href="/contact">Contact</a> | 
+  {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">log in</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">log out</a>
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>

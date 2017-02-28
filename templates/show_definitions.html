@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_definition') }}" method=post class=add-definition>
+      <dl>
+        <dt>Definition:
+        <dd><textarea name=definition rows=5 cols=40></textarea>
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+  {% endif %}
+  <ul class=entries>
+  {% for entry in entries %}
+    <div class="link-container">
+      <li>
+        <h2><a href="/definition/{{entry.id}}/">{{ entry.definition }}</a></h2>
+        Submitted by {{ entry.created_by|safe }} at {{ entry.submission_date|safe }}
+      </li>
+    </div>
+    <p>
+  {% else %}
+      <li><em>Need a word?  Add a definition!</em>
+  {% endfor %}
+  </ul>
+{% endblock %}

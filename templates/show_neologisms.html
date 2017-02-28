@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h1>{{ d.definition }}</h1>
+  Submitted by {{ d.created_by|safe }} at {{ d.submission_date|safe }}
+  <p>
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_neologism') }}" method=post class=add-neologism>
+      <input type=hidden name=definition_id value={{ d.definition_id }}>
+      <dl>
+        <dt>Neologism:
+        <dd><textarea name=neologism rows=5 cols=40></textarea>
+        <dd><input type=submit value=Add>
+      </dl>
+    </form>
+  {% endif %}
+  <ul class=entries>
+  {% for n in neologisms %}
+    <div class="link-container">
+      <li><h2>{{ n.neologism }}</h2>
+        Submitted by {{ n.created_by|safe }} at {{ n.submission_date|safe }} ({{ n.upvotes }} upvotes)
+      </li>
+      {% if upvote_status == 0 and session.logged_in %}
+        <div class="arrow-container">
+          <a href="/upvote/{{n.id}}/">
+            <img src="{{ url_for('static', filename='arrow.png') }}" height="20px">
+          </a>
+        </div>
+      {% endif %}
+    </div>
+    <p>
+  {% else %}
+    <li><em>Add a neologism!</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
