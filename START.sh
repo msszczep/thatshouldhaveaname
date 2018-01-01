@@ -1,4 +1,4 @@
-export MYPROJECT="CHANGEME"
+export MYPROJECT="tshan"
 rm -rf $MYPROJECT
 mkdir $MYPROJECT
 cd $MYPROJECT

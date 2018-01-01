@@ -25,3 +25,8 @@ export FLASK_APP=thatshouldhaveaname.py
 export FLASK_DEBUG=1
 flask run
 ```
+
+TODO:
+* Improve look of page; make it more distinctive
+* Add in Auth0
+https://auth0.com/docs/quickstart/backend/python
